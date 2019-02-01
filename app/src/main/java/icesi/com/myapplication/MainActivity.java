@@ -2,15 +2,26 @@ package icesi.com.myapplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_register;
+
+
+    private Button btn_login;
+
+
+    private EditText et_user;
+
+    private EditText et_pass;
 
     @Override
     public void onBackPressed() {
@@ -49,5 +60,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        et_user=findViewById(R.id.et_username);
+        et_pass=findViewById(R.id.et_password);
+
+
+        btn_login = findViewById(R.id.bt_login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, Profile.class);
+                i.putExtra("nombre", et_user.getText().toString());
+                i.putExtra("contra", et_pass.getText().toString());
+                startActivity(i);
+            }
+        });
+
+
+
     }
 }
