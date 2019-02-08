@@ -29,6 +29,34 @@ public class Fragment_A extends Fragment {
      // Inflate permite pasar de xml a objeto
         View v = inflater.inflate(R.layout.fragment_a, container, false);
         Button btn_a_fragment_a = v.findViewById(R.id.btn_a_fragment_a);
+
+        btn_a_fragment_a.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Paso 4 mandar info al otro lado
+
+                listener.onMessage("Hola desde el fragmento A");
+
+            }
+        });
+
+
         return v;
+    }
+
+
+    // Paso1 interface
+
+    public interface fragemntAActions{
+        void onMessage(String msj);
+    }
+
+    // Paso2 Crear listener
+    fragemntAActions listener;
+
+    // Paso3 Crear metodo para el listener
+    public void setListener(fragemntAActions listener){
+        this.listener = listener;
     }
 }
